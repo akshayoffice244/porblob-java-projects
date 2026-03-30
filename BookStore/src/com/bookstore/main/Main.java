@@ -57,8 +57,8 @@ public class Main {
 	}
 
 	static void addBook(BookDao bookDao) {
-		try (var sc = new Scanner(System.in)){
-
+		try{
+			Scanner sc = new Scanner(System.in);
 			
 			Book book = new Book();
 			System.out.println("Enter book id: ");
@@ -128,8 +128,8 @@ public class Main {
 	}
 
 	static void deleteABookRecord(BookDao bookDao) {
-		try(var sc = new Scanner(System.in)) {
-
+		try {
+			var sc = new Scanner(System.in);
 			System.out.println("Enter book ID: ");
 			
 			int id = sc.nextInt();
