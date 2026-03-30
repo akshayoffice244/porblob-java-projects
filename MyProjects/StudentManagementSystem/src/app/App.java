@@ -55,6 +55,7 @@ public class App {
 
 	                case 5:
 	                	exit = 0;
+	                	sc.close();
 	                	break;
 	                		
 		         

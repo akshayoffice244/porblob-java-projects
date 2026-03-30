@@ -1,5 +1,6 @@
 package com.bookstore.main;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.bookstore.model.Book;
@@ -42,7 +43,9 @@ public class Main {
 					book_dao.removeAll();
 					break;
 				case 6:
+					sc.close();
 					exit = 6;
+					
 					break;
 				default:
 					System.out.println("Enter a valid choice!");
@@ -54,9 +57,9 @@ public class Main {
 	}
 
 	static void addBook(BookDao bookDao) {
-		try {
+		try (var sc = new Scanner(System.in)){
 
-			Scanner sc = new Scanner(System.in);
+			
 			Book book = new Book();
 			System.out.println("Enter book id: ");
 			book.setId(sc.nextInt());
@@ -71,15 +74,18 @@ public class Main {
 
 			bookDao.add(book);
 
-		} catch (Exception e) {
+		} catch (InputMismatchException e) {
+			System.out.println("Please enter valid inputs.");
+			System.out.println();
+		}catch(Exception e) {
 			System.out.println("Error: " + e.getMessage());
 		}
 	}
 
 	static void updateBookRecord(BookDao bookDao) {
-		try {
+		try(var sc = new Scanner(System.in)) {
 
-			Scanner sc = new Scanner(System.in);
+			
 			Book book = new Book();
 			System.out.println("Enter book id: ");
 			book.setId(sc.nextInt());
@@ -113,21 +119,26 @@ public class Main {
 				System.out.println("Book record doesn't exist!");
 			}
 
-		} catch (Exception e) {
+		} catch (InputMismatchException e) {
+			System.out.println("Please enter valid inputs.");
+			System.out.println();
+		}catch(Exception e) {
 			System.out.println("Error: " + e.getMessage());
 		}
-
 	}
 
 	static void deleteABookRecord(BookDao bookDao) {
-		try {
+		try(var sc = new Scanner(System.in)) {
 
 			System.out.println("Enter book ID: ");
-			Scanner sc = new Scanner(System.in);
+			
 			int id = sc.nextInt();
 			bookDao.delete(id);
-
-		} catch (Exception e) {
+			
+		}catch (InputMismatchException e) {
+			System.out.println("Please enter valid inputs.");
+			System.out.println();
+		}catch(Exception e) {
 			System.out.println("Error: " + e.getMessage());
 		}
 
@@ -136,10 +147,12 @@ public class Main {
 	static void showAllRecords(BookDao bookDao) {
 		try {
 			bookDao.displayAll();
-		} catch (Exception e) {
+		} catch (InputMismatchException e) {
+			System.out.println("Please enter valid inputs.");
+			System.out.println();
+		}catch(Exception e) {
 			System.out.println("Error: " + e.getMessage());
 		}
-
 	}
 
 }

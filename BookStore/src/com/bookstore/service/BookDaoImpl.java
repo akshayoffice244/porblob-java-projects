@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.bookstore.model.Book;
 
 public class BookDaoImpl implements BookDao{
-	HashMap<Integer, Book> book_list = new HashMap<>();
+	private HashMap<Integer, Book> book_list = new HashMap<>();
 
 	@Override
 	public void add(Book book) {
